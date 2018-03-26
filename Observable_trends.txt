@@ -1,0 +1,6 @@
+Observable Trends for Heroes of Pymoli
+1. Significantly more males purchase games.  Even more to the point, they are willing to spend more as well based on the normalized totals.
+
+2. The largest age group is the 20-24, by more than double of the next group.
+
+3. There is something clearly wrong with my last table.  I would not be confident of its assumptions
