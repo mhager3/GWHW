@@ -1,6 +1,7 @@
 // Get references to the tbody element, input field and button
 var $tbody = document.querySelector("tbody");
-var $stateInput = document.querySelector("#state");
+// var $stateInput = document.querySelector("#state");
+var $dateInput = document.querySelector("#date");
 var $searchBtn = document.querySelector("#search");
 
 // Add an event listener to the searchButton, call handleSearchButtonClick when clicked
@@ -8,14 +9,14 @@ $searchBtn.addEventListener("click", handleSearchButtonClick);
 
 var data = dataSet;
 // Set filteredAddresses to addressData initially
-var filteredAddresses = dataSet;
+var filteredDate = dataSet;
 
 // renderTable renders the filteredAddresses to the tbody
 function renderTable() {
   $tbody.innerHTML = "";
-  for (var i = 0; i < filteredAddresses.length; i++) {
+  for (var i = 0; i < filteredDate.length; i++) {
     // Get get the current address object and its fields
-    var address = filteredAddresses[i];
+    var address = filteredDate[i];
     var fields = Object.keys(address);
     // Create a new row in the tbody, set the index to be i + startingIndex
     var $row = $tbody.insertRow(i);
@@ -30,14 +31,15 @@ function renderTable() {
 
 function handleSearchButtonClick() {
   // Format the user's search by removing leading and trailing whitespace, lowercase the string
-  var filterState = $stateInput.value.trim().toLowerCase();
+  var filterDate = $dateInput.value;
+  console.log(filterDate);
 
   // Set filteredAddresses to an array of all addresses whose "state" matches the filter
-  filteredAddresses = dataSet.filter(function(address) {
-    var addressState = address.state.toLowerCase();
+  filteredDate = dataSet.filter(function(date) {
+    var date = date.datetime;
 
     // If true, add the address to the filteredAddresses, otherwise don't add it to filteredAddresses
-    return addressState === filterState;
+    return date === filterDate;
   });
   renderTable();
 }
