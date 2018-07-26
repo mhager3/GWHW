@@ -6,13 +6,14 @@ import sqlalchemy
 from sqlalchemy import create_engine, func
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
+from sqlalchemy import *
 from flask import Flask, jsonify
 
 # set up flask
 app = Flask(__name__)
 
 # create the engine
-engine = create_engine("sqlite:///db/hawaii_db.sqlite", echo = False)
+engine = create_engine("sqlite:///db/hawaii_db.sqlite")
 
 # Establish the Base
 Base = automap_base()
@@ -105,4 +106,4 @@ def temp(start_date, end_date=0):
 
 # run the app
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
