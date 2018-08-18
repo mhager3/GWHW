@@ -1,3 +1,4 @@
+# dependencies
 from flask import (
     Flask,
     render_template,
@@ -10,23 +11,31 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 
+# create flask app
 app = Flask(__name__)
 
+# setup sqlite
 engine = create_engine("sqlite:///db/belly_button_biodiversity.sqlite")
+
+# reflect
 Base = automap_base()
 Base.prepare(engine, reflect=True)
 
+# table reference
 OTU = Base.classes.otu
 samp_meta = Base.classes.samples_metadata
 Samples = Base.classes.samples
 
+# create the session
 session = Session(engine)
 
+# index
 @app.route("/")
 def home():
     """Render Home Page."""
     return render_template("index.html")
 
+# sample names
 @app.route("/names")
 def sample_names():
     results = session.query(samp_meta.SAMPLEID).all()
